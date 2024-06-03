@@ -1,0 +1,623 @@
+@{
+    ViewBag.Title = "Services";
+    Layout = "_Layout";
+}
+
+<style>
+    .crumb {
+        padding: 0px 0px 50px;
+        margin: 50px 0px 0px;
+        word-spacing: 1em;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 0.5s;
+        position: relative;
+        text-align: center;
+    }
+
+    .crumb a:hover {
+        color: orange;
+        transition: 0.5s;
+    }
+
+    .crumb p {
+        margin-bottom: 0px;
+    }
+
+    .crumb .bg_tran {
+        font-size: 150px;
+        color: transparent;
+        -webkit-text-stroke: 2px sandybrown;
+        position: absolute;
+        left: 5%;
+        top: 41%;
+        z-index: -1;
+        opacity: 0.1;
+        font-weight: normal;
+        word-spacing: 0;
+    }
+
+    .crumb.center .bg_tran {
+    left: 27%;
+    bottom: 7%;
+}
+
+    .crumb h1 {
+        font-size: 48px;
+        margin: 0 0 10px;
+    }
+
+    .crumb h1 span {
+        color: orange;
+    }
+
+    .about.pet {
+        padding: 60px 0;
+    }
+
+    .service {
+        background-color: white;
+        padding: 40px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service .container {
+        position: cover;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .heading p {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    .heading h2 {
+        font-size: 36px;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .heading .purple {
+        color: black;
+    }
+
+    .heading .orange {
+        color: black;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-right: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .icon.orange {
+        background-color: orange;
+        color: white;
+    }
+
+    .icon .svg-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /*----------*/
+    .contact .container{
+        width: 1000px;
+    }
+    .contact .form .heading p {
+        color: black;
+        text-align: center;
+    }
+
+    .contact .form .heading h3 {
+        color: ;
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .contact .form {
+        position: relative;
+        background-color: orange;
+        padding: 40px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(42, 40, 40, 0.426);
+        
+    }
+
+    .contact .form p+h3 {
+        padding-bottom: 10px;
+        color: white;
+        margin-bottom: 0px;
+    }
+
+    .contact .form label {
+        font-size: 14px;
+        color: white;
+    }
+
+    .contact .form .form-select {
+        border-radius: 50px;
+        border-top-right-radius: 0px;
+        margin-bottom: 1rem;
+        height: 50px;
+    }
+
+    .contact .form .result p {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .contact .form .slidecontainer {
+        width: 100%;
+        padding: 20px 0px;
+    }
+
+    .contact .form .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        background: bisque;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        border-radius: 20px;
+    }
+
+    .contact .form .slider:hover {
+        opacity: 1;
+    }
+
+    .contact .form .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: bisque;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .contact .form .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: bisque;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .contact .form .slidecontainer #day {
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .contact .form .result h3 {
+        color: black;
+    }
+
+    .contact .form .result h3 span {
+        color: black;
+    }
+
+    .contact .faq {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(42, 40, 40, 0.426);
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .contact .faq .heading p {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .contact .faq .heading h3 {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 28px;
+        color: #333;
+    }
+
+    .contact .faq .heading .purple {
+        color: black;
+    }
+
+    .contact .faq .heading .orange {
+        color: black;
+    }
+
+    .contact .faq .form-group {
+        margin-bottom: 15px;
+        
+    }
+
+    .contact .faq .form-group input,
+    .form-group textarea , .form-group select{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+        border-radius: 50px;
+        border-top-right-radius: 0px;
+    }
+
+    .contact .faq.form-group textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    .contact .faq.btn {
+        background-color: #FFA500;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .contact .faq.btn:hover {
+        background-color: #e59400;
+    }
+</style>
+
+<div class="crumb center">
+    <div class="container">
+        <h1>
+            AdoptApet <span class="wow pulse" data-wow-delay="1s">Services</span>
+        </h1>
+        <div class="bg_tran">
+            PawreX Services
+        </div>
+        <p>
+            <a href="index-5.html" title="Home">HOME</a>
+            || <span>SERVICES</span>
+        </p>
+    </div>
+</div>
+<div class="about pet">
+    <section class="service">
+        <div class="container">
+            <div class="heading text-center">
+                <p>
+                    <span class="purple"><i class="fas fa-paw"></i></span>
+                    <span class="orange"><i class="fas fa-paw"></i></span>
+                    <span class="purple"><i class="fas fa-paw"></i></span>
+                </p>
+                <h2>We are <span class="wow pulse" data-wow-delay="1s">
+                        Professionals</span></h2>
+            </div>
+            <div class="cards">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-8.png" alt="" style="width: 70%; margin-left: 10px;">
+                            </div>
+                            <div class="context">
+                                <h5>
+                                    Pet Grooming
+                                </h5>
+                                <p>
+                                    Proper care and maintenance are essential to ensure the well-being of our beloved
+                                    pets. This care regimen encompasses various tasks such as regular baths, nail
+                                    trimming, ear hygiene, and dental attention. These activities play a pivotal role in
+                                    preserving their health and appearance. By keeping them clean and well-groomed, we
+                                    can minimize skin irritations, control shedding, and promptly identify any potential
+                                    health concerns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-7.png" alt="" style="width: 70%;">
+                            </div>
+
+                            <div class="context">
+                                <h5 class="purple">
+                                    Pet Adoption
+                                </h5>
+                                <p>
+                                    Adopting a pet involves providing a loving home to an animal in need. It's a
+                                    compassionate act that not only benefits the pet but also enriches the life of the
+                                    adopter. Through adoption, animals find safety, companionship, and a chance for a
+                                    better life.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-9.png" alt="" style="width: 70%;">
+                            </div>
+
+                            <div class="context">
+                                <h5 class="orange">
+                                    Pet Training
+                                </h5>
+                                <p>
+                                    Training your pet is a crucial part of responsible pet ownership. It involves
+                                    teaching them basic commands, socializing them with people and other animals, and
+                                    addressing any behavioral issues. Training enhances the bond between pet and owner
+                                    and promotes a harmonious living environment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-11.png" alt="" style="width: 70%;">
+                            </div>
+
+                            <div class="context">
+                                <h5 class="purple">
+                                    Pet Vaccination
+                                </h5>
+                                <p>
+                                    Vaccinating your pet is essential for preventing various diseases and ensuring their
+                                    long-term health. Vaccines protect pets from serious illnesses and help build
+                                    immunity against harmful pathogens. Regular vaccination schedules are recommended by
+                                    veterinarians based on the pet's age, lifestyle, and risk factors.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-10.png" alt="" style="width: 70%;margin-left: 10px;">
+                            </div>
+
+                            <div class="context">
+                                <h5 class="orange">
+                                    Pet Day Caring
+                                </h5>
+                                <p>
+                                    Pet day care provides a supervised environment for pets while their owners are at
+                                    work or away. It offers companionship, socialization with other pets, and structured
+                                    activities to keep them mentally and physically stimulated. Day care facilities
+                                    often have trained staff and amenities to cater to pets' needs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card">
+                            <div class="icon orange">
+                                <img src="~/Pictures/icon-12.png" alt="" style="width: 70%; margin-left: 10px;">
+                            </div>
+                            <div class="context">
+                                <h5 class="purple">
+                                    Pet Sitting/Walking
+                                </h5>
+                                <p>
+                                    Pet sitting/walking services offer professional care for pets when owners are unable
+                                    to attend to them personally. This can include feeding, exercise, playtime, and
+                                    medication administration if needed. Pet sitters/walkers ensure the well-being and
+                                    safety of pets in their care while providing peace of mind to owners.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<section class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12">
+                <div class="form wow fadeInLeft">
+                    <div class="range_slider">
+                        <div class="context">
+                            <div class="heading">
+                                <p class="wow fadeInUp">
+                                    <span class="purple"><i class="fas fa-paw"></i></span>
+                                    <span class="orange"><i class="fas fa-paw"></i> </span>
+                                    <span class="purple"><i class="fas fa-paw"></i> </span>
+                                </p>
+                                <h3>Get a qoute for <span class="wow pulse" data-wow-delay="1s"> Pet Boarding
+                                    </span></h3>
+                            </div>
+                            <div class="form-group">
+                                <label for="pet">YOUR PET: </label>
+                                <select class="form-select" id="pet">
+                                    <option value=" selected">Select--</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Dog">Dog</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">SERVICE: </label>
+                                <select class="form-select" id="service">
+                                    <option value="selected">Select--</option>
+                                    <option value="Adoption">Adoption</option>
+                                    <option value="Grooming">Grooming</option>
+                                    <option value="Sitting/Walking">Sitting/Walking</option>
+                                    <option value="Training">Training</option>
+                                    <option value="Care Day">Care Day</option>
+                                    <option value="Vaccination">Vaccination</option>
+
+
+                                </select>
+                            </div>
+                            <div class="slidecontainer">
+                                <label for="myRange">PER <span id="day"></span> DAY SERVICE: </label>
+                                <input type="range" min="1" max="10" value="1" class="slider" id="myRange">
+                            </div>
+                            <div class="result">
+                                <p>TOTAL</p>
+                                <h3>$ <span class="final" id="result"></span>.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-0 col-sm-0"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="faq wow fadeInRight">
+                    <div class="heading">
+                        <p class="wow fadeInUp">
+                            <span class="purple"><i class="fas fa-paw"></i></span>
+                            <span class="orange"><i class="fas fa-paw"></i></span>
+                            <span class="purple"><i class="fas fa-paw"></i></span>
+                        </p>
+                        <h3>Get An <span class="wow pulse" data-wow-delay="1s">Appointment</span></h3>
+                    </div>
+
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" id="name" class="form-control" placeholder="Name" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" placeholder="Email" class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" id="phone" class="form-control" placeholder="Phone" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group">
+                                    <input type="number" id="numPets" class="form-control" placeholder="Number of Pets"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group">
+                                <select class="form-select" id="service">
+                                    <option value="selected">Select Service Type--</option>
+                                    <option value="Adoption">Adoption</option>
+                                    <option value="Grooming">Grooming</option>
+                                    <option value="Sitting/Walking">Sitting/Walking</option>
+                                    <option value="Training">Training</option>
+                                    <option value="Care Day">Care Day</option>
+                                    <option value="Vaccination">Vaccination</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group" >
+                                    <select name="petKind" id="petKind" class="form-select" placeholder="Kind of Pets"
+                                        required>
+                                        <option value="" selected disabled>Select Your pet--</option>
+                                        <option value="Cat">Cat</option>
+                                        <option value="Dog">Dog</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="msg" id="msg" class="form-control" placeholder="Message"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn form-control">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    if ($(".range_slider").length) {
+
+        var range = document.getElementById("myRange");
+        var result = document.getElementById("result");
+        var hour = document.getElementById("day");
+
+        var rate = 100;
+        var pet_t = 0;
+        var serve_t = 0;
+
+        result.innerHTML = 0;
+        hour.innerHTML = 1;
+
+        $('#pet').change(function () {
+            var pet = $('#pet :selected').val();
+            if (pet == "") {
+                pet_t = 0;
+            }
+            if (pet == "Cat") {
+                pet_t = 50;
+            }
+            if (pet == "Dog") {
+                pet_t = 60;
+            }
+            result.innerHTML = rate + pet_t + serve_t;
+        });
+
+        $('#service').change(function () {
+            var service = $('#service :selected').val();
+            if (service == "") {
+                serve_t = 0;
+            }
+            if (service == "Bath") {
+                serve_t = 30;
+            }
+            if (service == "Grooming") {
+                serve_t = 40;
+            }
+            result.innerHTML = rate + pet_t + serve_t;
+        });
+
+        range.oninput = function () {
+            rate = this.value * 30;
+            result.innerHTML = rate + pet_t + serve_t;
+            hour.innerHTML = this.value;
+        }
+
+    }
+</script>

@@ -1,0 +1,217 @@
+@model List<pet>;
+@{
+    ViewBag.Title = "Pets";
+    Layout = "_Layout";
+}
+<style>
+    .crumb {
+        padding: 0px 0px 50px;
+        margin: 50px 0px 0px;
+        word-spacing: 1em;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 0.5s;
+        position: relative;
+        text-align: center;
+    }
+
+    .crumb a:hover {
+        color: orange;
+        transition: 0.5s;
+    }
+
+    .crumb p {
+        margin-bottom: 0px;
+    }
+
+    .crumb .bg_tran {
+        font-size: 150px;
+        color: transparent;
+        -webkit-text-stroke: 2px sandybrown;
+        position: absolute;
+        left: 5%;
+        top: 41%;
+        z-index: -1;
+        opacity: 0.1;
+        font-weight: normal;
+        word-spacing: 0;
+    }
+
+    .crumb.center .bg_tran {
+        left: 27%;
+        bottom: 7%;
+    }
+
+    .crumb h1 {
+        font-size: 48px;
+        margin: 0 0 10px;
+    }
+
+    .crumb h1 span {
+        color: orange;
+    }
+
+    .pet.about .team-block {
+        position: relative;
+    padding: 0px 0px 75px;
+    margin: 75px 0px 0px
+    }
+
+    .team-block {
+        margin-top: 10px;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    .inner-box .image {
+        width: 100%;
+        height: 100%;
+        transition: border-radius 1s ease-out;
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        animation: morph 8s ease-in-out infinite both alternate;
+        position: absolute;
+        overflow: hidden;
+        z-index: 5;
+        top: 15%;
+    }
+
+    .inner-box .image img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-size: 100%;
+        background-position: center center;
+        display: flex;
+        color: #003;
+        font-size: 5vw;
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-transform: uppercase;
+        animation: spin 12s ease-in-out infinite alternate-reverse;
+        opacity: 1;
+        z-index: 2;
+    }
+
+    .inner-box .content {
+        padding: 20px;
+        text-align: center;
+        background: white;
+    }
+
+    .inner-box .content h4 {
+        font-size: 24px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .inner-box .content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px;
+        text-align: left;
+    }
+
+    .inner-box .content ul li {
+        font-size: 16px;
+        color: black;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .inner-box .content ul li:before {
+        content: "\f1b0";
+        font-family: "FontAwesome";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: orange;
+        font-size: 18px;
+    }
+
+    .inner-box .content .button {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .inner-box .content .button a {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        color: white;
+    }
+
+    .inner-box .content .button .btn.main {
+        background-color: orange;
+    }
+
+    .inner-box .content .button .btn.main:hover {
+        background-color: bisque;
+    }
+
+    .inner-box .content .button .btn.btn-primary {
+        background-color: orange;
+    }
+
+    .inner-box .content .button .btn.btn-primary:hover {
+        background-color: bisque;
+    }
+</style>
+
+<div class="crumb">
+    <div class="container">
+        <h1>
+            Adopt <span class="wow pulse" data-wow-delay="1s">Pet</span>
+        </h1>
+        <div class="bg_tran">
+            Adopt Pet
+        </div>
+        <p>
+            <a href="index-5.html" title="Home">HOME</a>
+            || <span>PETS</span>
+        </p>
+    </div>
+</div>
+
+<a asp-controller="Pets" asp-action="Add" class="btn btn-primary mb-3" style="float: right">Add New</a>
+
+<section class="pet about">
+    <div class="container">
+        <div class="row">
+            @foreach (var pet in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="team-block">
+                        <div class="inner-box">
+                            <div class="image">
+                                <img src="@pet.ImageUrl" alt="@pet.Name" class="img-fluid customer" />
+                            </div>
+                            <div class="content">
+                                <h4 class="wow fadeInDown">@pet.Name</h4>
+                                <ul>
+                                    <li class="fas fa-paw"> @pet.Age years old</li>
+                                    <li class="fas fa-paw"> @pet.Breed</li>
+                                    <li class="fas fa-paw"> @pet.Description</li>
+                                </ul>
+                                <div class="button wow fadeInUp">
+                                    <a href="pet-profile.html" class="btn main" title="Contact">
+                                        Adopt me <i class="fas fa-paw"></i>
+                                    </a>
+                                    <a asp-controller="Pets" asp-action="Details" asp-route-id="@pet.Id"
+                                        class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
